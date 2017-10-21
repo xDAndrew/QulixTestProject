@@ -1,0 +1,100 @@
+﻿body {
+    margin:0;
+    padding:0;
+
+    background: #000 url(https://im0-tub-by.yandex.net/i?id=1623c31e116bf980813becd5da02faad-l&n=13);
+	color: #fff;
+    background-attachment:fixed;
+    background-size:cover;
+}
+
+a:link
+{
+   color: #fff;
+}
+a:visited
+{
+   color: #fff;
+}
+a:active
+{
+   color: #fff;
+}
+
+.BodyContent
+{
+    font-size: 50px;
+    width:100%;
+    min-height: 300px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.BodyContent > ul
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.BodyContent > il
+{
+    float:left;
+}
+
+header{
+    width: 100%;
+    height: 150px;
+}
+
+header img
+{
+    position: relative;
+}
+
+.HeaderImage
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 150px;
+    z-index: 1;
+}
+
+.HomeImage
+{
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.SetEmployee-Content 
+{
+    text-align: center;
+    width: 280px;
+    margin: 50px auto;
+    /*background-color: yellow;*/
+}
+
+
+.addemploee {
+    height: 60px;
+    width: 60px;
+    top: 10px;
+    right: 10px;
+    position: fixed;
+    z-index: 999;
+}
+
+.addbutton
+{
+    height: 25px;
+    width: 25px;
+    top: 25px;
+    right: 50px;
+    position: fixed;
+    z-index: 1000;
+}

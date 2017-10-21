@@ -1,0 +1,36 @@
+﻿<div class="SetEmployee-Content">
+
+    @if (ViewBag.Id == 0) {<h1>Новая компания</h1>} else {<h1>Редактировать компанию</h1>}
+    
+    <form action="../Home/MyAction">
+        <label>Наименование</label>
+        <br />
+        <input type="text" name="name", value=""/>
+        <br />
+
+        <label>Форма собственности</label>
+        <br />
+        <select style="width: 140px;" name="v1">
+            @for (int i = 0; i < @ViewBag.FormSet.Count; i++)
+            {
+                <option value="@i">@ViewBag.FormSet[i].Name</option>
+            }
+        </select>
+        <br />
+
+        <label>Размер компании</label>
+        <br />
+        <select style="width: 140px;" name="v2">
+            @for (int i = 0; i < @ViewBag.SizeSet.Count; i++)
+            {
+                <option value="@i">@ViewBag.SizeSet[i].Name</option>
+            }
+        </select>
+        <br />
+        <br />
+
+        <button name="act" value="save" style="width: 140px;">Сохранить</button>
+        <br />
+        <button name="act" value="cancel" style="width: 140px;">Отмена</button>
+    </form> 
+</div>

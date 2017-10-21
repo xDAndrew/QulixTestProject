@@ -1,0 +1,58 @@
+﻿<div class="SetEmployee-Content">
+    
+    @if (ViewBag.Id == 0)
+    {
+        <h1>Новый сотрудник</h1>
+    }
+    else
+    {
+        <h1>Изменить данные</h1>
+    }
+
+    <form>
+        <label>Имя</label>
+        <br />
+        <input type="text" style="width: 140px;" />
+        <br />
+
+        <label>Фамилия</label>
+        <br />
+        <input type="text" style="width: 140px;" />
+        <br />
+
+        <label>Отчество</label>
+        <br />
+        <input type="text" style="width: 140px;" />
+        <br />
+
+        <label>Дата принятия</label>
+        <br />
+        <input type="date" value="@DateTime.Now.ToString("dd.MM.yyyy")" pattern="^\d{2}.\d{2}.\d{4}$" style="width: 140px;" />
+        <br />
+
+        <label>Должность</label>
+        <br />
+        <select style="width: 140px;">
+            @for (int i = 0; i < @ViewBag.PositionSet.Count; i++)
+            {
+                <option value="@i">@ViewBag.PositionSet[i].Name</option>
+            }
+        </select>
+        <br />
+
+        <label>Компания</label>
+        <br />
+        <select style="width: 140px;">
+            <option value="1">Валуевым
+            <option value="2">Руками
+            <option value="3">Граблями
+            <option value="4">Головой
+            <option value="5">Шеей
+        </select>
+        <br />
+        <br />
+
+        <button style="width: 140px;">Сохранить</button>
+        <button style="width: 140px;">Отмена</button>
+    </form>
+</div>
