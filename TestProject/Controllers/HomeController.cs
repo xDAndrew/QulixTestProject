@@ -11,6 +11,7 @@ namespace TestProject.Controllers
         private SimpleObjectSet FormSet = new SimpleObjectSet("FormSet");
         private SimpleObjectSet SizeSet = new SimpleObjectSet("SizeSet");
         private SimpleObjectSet PositionSet = new SimpleObjectSet("PositionSet");
+        private CompanySet Companies = new CompanySet("SELECT * FROM CompanySet");
 
         public HomeController()
         {
@@ -18,6 +19,7 @@ namespace TestProject.Controllers
             ViewBag.FormSet = FormSet;
             ViewBag.SizeSet = SizeSet;
             ViewBag.PositionSet = PositionSet;
+            ViewBag.CompanySet = Companies;
         }
 
         public ActionResult Index()
@@ -27,27 +29,11 @@ namespace TestProject.Controllers
 
         public ActionResult GetCompanies()
         {
-            var list = new List<Company>();
-            for (int i = 0; i < 100; i++)
-            {
-                list.Add(new Company());
-            }
-
-            ViewBag.myList = list;
-
             return View();
         }
 
         public ActionResult GetEmployees()
         {
-            var list = new List<Employee>();
-            for (int i = 0; i < 100; i++)
-            {
-                list.Add(new Employee());
-            }
-
-            ViewBag.myList = list;
-
             return View();
         }
 
@@ -57,22 +43,34 @@ namespace TestProject.Controllers
             return View();
         }
 
-        [HttpGet]
         public ActionResult SetCompany(int ID)
         {
             ViewBag.Id = ID;
             return View();
         }
 
-        public ActionResult MyAction(string Name, int v1, int v2, string act)
+        public ActionResult MyAction(string id, string Name, int v1, int v2, string act)
         {
             if (act == "save")
             {
-                return Redirect("../Home/Index");
+                int ind = int.Parse(id);
+                if (ind == 0)
+                {
+                    DBContext.GetInstance().SetEmptyQuery("INSERT INTO CompanySet (Name, Form_id, Size_id) VALUES (N'" + Name + "', " + v1 + ", " + v2 + ")");
+                }
+                else
+                {
+                    DBContext.GetInstance().SetEmptyQuery("UPDATE CompanySet SET Name = '" + Name + "', Form_id=" + v1 + ", Size_id=" + v2 + " WHERE Id=" + ind.ToString());
+                }
             }
 
             return Redirect("../Home/GetCompanies");
         }
 
+        public ActionResult Delete(int ID)
+        {
+            DBContext.GetInstance().SetEmptyQuery("DELETE FROM dbo.CompanySet WHERE Id = " + ID.ToString());
+            return Redirect("../Home/GetCompanies");
+        }
     }
 }

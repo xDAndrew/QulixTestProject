@@ -37,5 +37,25 @@ namespace TestProject.Models
         {
             get { return list.Count; }
         }
+
+        public string GetNameById(int id)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (list.GetItem(i).Id == id)
+                    return list.GetItem(i).Name;
+            }
+            return "";
+        }
+
+        public int GetIndexById(int id)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (list.GetItem(i).Id == id)
+                    return list.GetItem(i).Id;
+            }
+            return 0;
+        }
     }
 }

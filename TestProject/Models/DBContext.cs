@@ -39,6 +39,12 @@ namespace TestProject.Models
             return command.ExecuteReader();
         }
 
+        public void SetEmptyQuery(string query)
+        {
+            command.CommandText = query;
+            command.ExecuteNonQuery();
+        }
+
         private DBContext() {}
         private DBContext(DBContext context) {}
     }
