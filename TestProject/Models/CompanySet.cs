@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace TestProject.Models
 {
@@ -56,6 +53,16 @@ namespace TestProject.Models
                     return list.GetItem(i);
             }
             return null;
+        }
+
+        public int GetIndexById(int id)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (list.GetItem(i).Id == id)
+                    return list.GetItem(i).Id;
+            }
+            return 0;
         }
     }
 }

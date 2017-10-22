@@ -158,6 +158,7 @@
     <Compile Include="Models\CompanySet.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeSet.cs" />
     <Compile Include="Models\List.cs" />
     <Compile Include="Models\SimpleObject.cs" />
     <Compile Include="Models\SimpleObjectSet.cs" />
@@ -165,6 +166,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\addperson.png" />
+    <Content Include="Content\edit.png" />
+    <Content Include="Content\empty.png" />
+    <Content Include="Content\factory.png" />
+    <Content Include="Content\editUser.png" />
+    <Content Include="Content\plus.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

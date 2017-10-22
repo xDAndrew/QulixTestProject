@@ -2,41 +2,43 @@
 
     @if (ViewBag.Id == 0) {<h1>Новая компания</h1>} else {<h1>Редактировать компанию</h1>}
     
-    <form action="../Home/MyAction">
-        <label>ID</label><br/>
-        <input readonly type="text" name="id" id="id" value="0" style="width: 140px; text-align:center;"/><br/>
+    <form action="../Home/SaveCompany">
+        <label>ID</label><br />
+        <input readonly type="text" name="id" id="id" value="0" style="width: 140px; text-align:center;" /><br />
 
-        <label>Наименование</label><br/>
-        <input type="text" name="name" id="name" value="" style="width: 140px;"/><br/>
+        <label>Наименование</label><br />
+        <input type="text" name="name" id="name" value="" style="width: 140px;" required /><br />
 
-        <label>Форма собственности</label><br/>
-        <select style="width: 140px;" name="v1" id="v1">
+        <label>Форма собственности</label><br />
+        <select style="width: 140px;" name="v1" id="v1" required>
             @for (int i = 0; i < @ViewBag.FormSet.Count; i++)
             {
-                <option value="@(i + 1)">@ViewBag.FormSet[i].Name</option>
+                <option value="@ViewBag.FormSet[i].Id">@ViewBag.FormSet[i].Name</option>
             }
-        </select><br/>
+        </select><br />
 
-        <label>Размер компании</label><br/>
-        <select style="width: 140px;" name="v2" id="v2">
+        <label>Размер компании</label><br />
+        <select style="width: 140px;" name="v2" id="v2" required>
             @for (int i = 0; i < @ViewBag.SizeSet.Count; i++)
             {
-                <option value="@(i + 1)">@ViewBag.SizeSet[i].Name</option>
+                <option value="@ViewBag.SizeSet[i].Id">@ViewBag.SizeSet[i].Name</option>
             }
-        </select><br/><br/>
+        </select><br /><br />
 
         <button name="act" value="save" style="width: 140px;">Сохранить</button><br />
+    </form>
+
+    <form action="../Home/CancelCompany" method="post">
         <button name="act" value="cancel" style="width: 140px;">Отмена</button>
     </form>
 
-    @*Загружаем в форму данные, для редактирования*@
     @if (ViewBag.Id != 0)
     { 
         <script>
             document.getElementById("id").value = "@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Id";
             document.getElementById("name").value = "@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Name";
-            document.getElementById("v1").value = "@ViewBag.FormSet.GetIndexById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Form_id)";
-            document.getElementById("v2").value = "@ViewBag.SizeSet.GetIndexById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Size_id)";
+            document.getElementById("v1").value = "@ViewBag.FormSet.GetItemById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Form_id).Id";
+            document.getElementById("v2").value = "@ViewBag.SizeSet.GetItemById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Size_id).Id";
         </script>
     }
 </div>

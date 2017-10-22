@@ -48,14 +48,14 @@ namespace TestProject.Models
             return "";
         }
 
-        public int GetIndexById(int id)
+        public SimpleObject GetItemById(int id)
         {
             for (int i = 0; i < Count; i++)
             {
                 if (list.GetItem(i).Id == id)
-                    return list.GetItem(i).Id;
+                    return list.GetItem(i);
             }
-            return 0;
+            return null;
         }
     }
 }

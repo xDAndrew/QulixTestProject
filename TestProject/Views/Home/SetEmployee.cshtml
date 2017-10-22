@@ -1,58 +1,56 @@
 ﻿<div class="SetEmployee-Content">
     
-    @if (ViewBag.Id == 0)
-    {
-        <h1>Новый сотрудник</h1>
-    }
-    else
-    {
-        <h1>Изменить данные</h1>
-    }
+    @if (ViewBag.Id == 0) {<h1>Новый сотрудник</h1>} else {<h1>Изменить данные</h1>}
 
-    <form>
-        <label>Имя</label>
-        <br />
-        <input type="text" style="width: 140px;" />
-        <br />
+    <form action="../Home/SaveEmployee">
+        <label>ID</label><br />
+        <input readonly type="text" name="id" id="id" value="0" style="width: 140px; text-align:center;" /><br />
 
-        <label>Фамилия</label>
-        <br />
-        <input type="text" style="width: 140px;" />
-        <br />
+        <label>Имя</label><br />
+        <input type="text" name="name" id="name" value="" style="width: 140px;" required /><br />
 
-        <label>Отчество</label>
-        <br />
-        <input type="text" style="width: 140px;" />
-        <br />
+        <label>Фамилия</label><br />
+        <input type="text" name="surname" id="surname" value="" style="width: 140px;" required /><br />
 
-        <label>Дата принятия</label>
-        <br />
-        <input type="date" value="@DateTime.Now.ToString("dd.MM.yyyy")" pattern="^\d{2}.\d{2}.\d{4}$" style="width: 140px;" />
-        <br />
+        <label>Отчество</label><br />
+        <input type="text" name="lastname" id="lastname" value="" style="width: 140px;" required /><br />
 
-        <label>Должность</label>
-        <br />
-        <select style="width: 140px;">
+        <label>Дата принятия</label><br />
+        <input type="date" name="date" id="date" value="@DateTime.Now.ToString("dd.MM.yyyy")" pattern="^\d{2}.\d{2}.\d{4}$" style="width: 140px;" /><br />
+
+        <label>Должность</label><br />
+        <select name="v1" id="v1" style="width: 140px;" required>
             @for (int i = 0; i < @ViewBag.PositionSet.Count; i++)
             {
-                <option value="@i">@ViewBag.PositionSet[i].Name</option>
+                <option value="@ViewBag.PositionSet[i].Id">@ViewBag.PositionSet[i].Name</option>
             }
-        </select>
-        <br />
+        </select><br />
 
-        <label>Компания</label>
-        <br />
-        <select style="width: 140px;">
-            <option value="1">Валуевым
-            <option value="2">Руками
-            <option value="3">Граблями
-            <option value="4">Головой
-            <option value="5">Шеей
-        </select>
-        <br />
-        <br />
+        <label>Компания</label><br />
+        <select name="v2" id="v2" style="width: 140px;" required>
+            @for (int i = 0; i < @ViewBag.CompanySet.Count; i++)
+            {
+                <option value="@ViewBag.CompanySet[i].Id">@ViewBag.CompanySet[i].Name</option>
+            }
+        </select><br /><br />
 
-        <button style="width: 140px;">Сохранить</button>
-        <button style="width: 140px;">Отмена</button>
+        <button name="act" value="save" style="width: 140px;">Сохранить</button>
     </form>
+
+    <form action="../Home/CancelEmployee" method="post">
+        <button name="act" value="cancel" style="width: 140px;">Отмена</button>
+    </form>
+
+    @if (ViewBag.Id != 0)
+    {
+        <script>
+            document.getElementById("id").value = "@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Id";
+            document.getElementById("name").value = "@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Name";
+            document.getElementById("surname").value = "@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Surname";
+            document.getElementById("lastname").value = "@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Lastname";
+            document.getElementById("date").value = "@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Date.ToString("dd.MM.yyyy")";
+            document.getElementById("v1").value = "@ViewBag.PositionSet.GetItemById(@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Position_Id).Id";
+            document.getElementById("v2").value = "@ViewBag.CompanySet.GetItemById(@ViewBag.EmployeeSet.GetItemById(@ViewBag.Id).Company_Id).Id";
+        </script>
+    }
 </div>

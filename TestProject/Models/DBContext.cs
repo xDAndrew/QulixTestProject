@@ -7,7 +7,7 @@ namespace TestProject.Models
 {
     public class DBContext
     {
-        static DBContext context;
+        private static DBContext context;
         private SqlConnection connection;
         private SqlCommand command;
 
@@ -25,6 +25,11 @@ namespace TestProject.Models
             }
         }
 
+        public SqlConnection Connection
+        {
+            get { return connection; }
+        }
+
         public void Init()
         {
             connection = new SqlConnection(@"Server=(localdb)\Projects;Database=QulixDatabase;Trusted_Connection=True;");
@@ -37,12 +42,6 @@ namespace TestProject.Models
         {
             command.CommandText = query;
             return command.ExecuteReader();
-        }
-
-        public void MakeEmptyQuery(string query)
-        {
-            command.CommandText = query;
-            command.ExecuteNonQuery();
         }
 
         private DBContext() {}

@@ -1,16 +1,16 @@
 ﻿<div style="text-align:center;">
     <a href="../Home/SetCompany?ID=0">
-        <img class="addemploee" src="http://www.icon100.com/up/4190/512/factory_breakdown.png" title="Добавить организацию!" />
-        <img class="addbutton" src="https://icon-icons.com/icons2/404/PNG/128/plus_40632.png" title="Добавить организацию!" />
+        <img class="addemploee" src="../Content/factory.png" title="Добавить организацию!" />
+        <img class="addbutton" src="../Content/plus.png" title="Добавить организацию!" />
     </a>
     <h3>Компании</h3>
     <table border="1" style="width:90%; margin: 0 auto; text-align:center;">
         <tr>
-            <td><p>Id</p></td>
-            <td><p>Name</p></td>
-            <td><p>Form_id</p></td>
-            <td><p>Size_id</p></td>
-            <td><p>Controls</p></td>
+            <td><p>№</p></td>
+            <td><p>Имя</p></td>
+            <td><p>Форма</p></td>
+            <td><p>Размер</p></td>
+            <td><p>Управление</p></td>
         </tr>
 
         @for (int i = 0; i < @ViewBag.CompanySet.Count; i++)
@@ -23,10 +23,10 @@
 
                 <td>
                     <a href="../Home/SetCompany?ID=@ViewBag.CompanySet[i].Id" style="text-decoration:none;">
-                        <img src="https://www.shareicon.net/data/2015/08/12/84116_edit_512x512.png" title="Редактировать запись" width="25" height="25" />
+                        <img src="../Content/edit.png" title="Редактировать запись" width="25" height="25" />
                     </a>
-                    <a href="../Home/Delete?ID=@ViewBag.CompanySet[i].Id" style="text-decoration:none;">
-                        <img src="https://www.shareicon.net/download/2015/11/11/161167_empty_256x256.png" title="Удалить запись" width="25" height="25" />
+                    <a href="../Home/DeleteCompany?ID=@ViewBag.CompanySet[i].Id" style="text-decoration:none;">
+                        <img src="../Content/empty.png" title="Удалить запись" width="25" height="25" />
                     </a>
                 </td>
             </tr>
