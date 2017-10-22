@@ -19,7 +19,7 @@ namespace TestProject.Models
         public void Update()
         {
             var contex = DBContext.GetInstance();
-            var data = contex.GetDataFromDB(this.query);
+            var data = contex.MakeDataQuery(this.query);
 
             list = new List<Company>();
             if (data.HasRows)

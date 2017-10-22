@@ -12,7 +12,7 @@ namespace TestProject.Models
         public SimpleObjectSet(string tableName)
         {
             var contex = DBContext.GetInstance();
-            var data = contex.GetDataFromDB("SELECT * FROM " + tableName);
+            var data = contex.MakeDataQuery("SELECT * FROM " + tableName);
 
             if (data.HasRows)
             {

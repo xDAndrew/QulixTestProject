@@ -4,7 +4,7 @@
     
     <form action="../Home/MyAction">
         <label>ID</label><br/>
-        <input type="text" name="id" id="id" value="0" style="width: 140px; text-align:center;"/><br/>
+        <input readonly type="text" name="id" id="id" value="0" style="width: 140px; text-align:center;"/><br/>
 
         <label>Наименование</label><br/>
         <input type="text" name="name" id="name" value="" style="width: 140px;"/><br/>
@@ -29,18 +29,14 @@
         <button name="act" value="cancel" style="width: 140px;">Отмена</button>
     </form>
 
-    @*Загружаем в форму данные*@
+    @*Загружаем в форму данные, для редактирования*@
     @if (ViewBag.Id != 0)
     { 
         <script>
-            let a = document.getElementById("name");
-            a.value = "@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Name";
-            a = document.getElementById("v1");
-            a.value = "@ViewBag.FormSet.GetIndexById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Form_id)";
-            a = document.getElementById("v2");
-            a.value = "@ViewBag.SizeSet.GetIndexById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Size_id)";
-            a = document.getElementById("id");
-            a.value = "@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Id";
+            document.getElementById("id").value = "@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Id";
+            document.getElementById("name").value = "@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Name";
+            document.getElementById("v1").value = "@ViewBag.FormSet.GetIndexById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Form_id)";
+            document.getElementById("v2").value = "@ViewBag.SizeSet.GetIndexById(@ViewBag.CompanySet.GetItemById(@ViewBag.Id).Size_id)";
         </script>
     }
 </div>

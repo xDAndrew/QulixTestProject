@@ -33,13 +33,13 @@ namespace TestProject.Models
             command.Connection = connection;
         }
 
-        public SqlDataReader GetDataFromDB(string query)
+        public SqlDataReader MakeDataQuery(string query)
         {
             command.CommandText = query;
             return command.ExecuteReader();
         }
 
-        public void SetEmptyQuery(string query)
+        public void MakeEmptyQuery(string query)
         {
             command.CommandText = query;
             command.ExecuteNonQuery();

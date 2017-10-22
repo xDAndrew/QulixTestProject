@@ -56,11 +56,11 @@ namespace TestProject.Controllers
                 int ind = int.Parse(id);
                 if (ind == 0)
                 {
-                    DBContext.GetInstance().SetEmptyQuery("INSERT INTO CompanySet (Name, Form_id, Size_id) VALUES (N'" + Name + "', " + v1 + ", " + v2 + ")");
+                    DBContext.GetInstance().MakeEmptyQuery("INSERT INTO CompanySet (Name, Form_id, Size_id) VALUES (N'" + Name + "', " + v1 + ", " + v2 + ")");
                 }
                 else
                 {
-                    DBContext.GetInstance().SetEmptyQuery("UPDATE CompanySet SET Name = '" + Name + "', Form_id=" + v1 + ", Size_id=" + v2 + " WHERE Id=" + ind.ToString());
+                    DBContext.GetInstance().MakeEmptyQuery("UPDATE CompanySet SET Name = N'" + Name + "', Form_id=" + v1 + ", Size_id=" + v2 + " WHERE Id=" + ind.ToString());
                 }
             }
 
@@ -69,7 +69,7 @@ namespace TestProject.Controllers
 
         public ActionResult Delete(int ID)
         {
-            DBContext.GetInstance().SetEmptyQuery("DELETE FROM dbo.CompanySet WHERE Id = " + ID.ToString());
+            DBContext.GetInstance().MakeEmptyQuery("DELETE FROM dbo.CompanySet WHERE Id = " + ID.ToString());
             return Redirect("../Home/GetCompanies");
         }
     }
